@@ -1,5 +1,5 @@
 #Author : Siddharth Menon (Written by reffering matplotlib documentation)
-#Code specific to NVIDIA Jetson TX2
+#Code specific to UBUNTU OS
 import sys 
 import os
 import json
@@ -12,11 +12,6 @@ import statistics
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-
-
-# Remove all unnnessory/ commented lines
-
-
 
 class Benchmarking:
 	t1 = threading.Thread
@@ -33,14 +28,11 @@ class Benchmarking:
 		self.t1.join()
  
 	def model_report(self):
-                # do group initialisation
+                
 		gpu_list,cpu_list,cpu_list1,gpu_temp,cpu_temp,timer,list1,power_consumption_list=[]
 		
 		def gpu_usage():
 
-                # Adopt one convention: Camel case or underscore
-                # Don't use numeric constants. Use variables
-                # Example: scale_down_factor = 10
 			scale_down_factor_for_gpu=10
 			gpu_Load_File="/sys/devices/gpu.0/load"
 			with open(gpu_Load_File, 'r') as gpu_File:
@@ -50,12 +42,6 @@ class Benchmarking:
 
 		def cpu_usage():
 
-                # Try to use two spaces instead of four spaces
-
-		# Example: bad code: cpu_free=((8-((float(line[17])*10 + float(line[18]))/10))/8)*100
-                
-                # Example: good code:  Try with reduce, map and simplify this logic
-			
 			cpuLoadFile="/proc/meminfo"
 
 			with open(cpuLoadFile) as fp:
@@ -96,9 +82,6 @@ class Benchmarking:
 		while(True):
 			if(self.start==True):
 				break
-
-                # Don't exceed 100 characters in line
-                # Split longeer lines into shorter lines
 			
 		start_time=time.time()	
 		with open('temporary_file.txt', 'w+') as temporary_file_write:
@@ -114,18 +97,13 @@ class Benchmarking:
 		for value in value1:
 			value=float(value)
 			list1.append(value)
-          
-                # use string operations to simplify this logic 
+      
 		gpu_list=list1[0::5]
 		cpu_list=list1[1::5]
 		gpu_temp=list1[2::5]
 		cpu_temp=list1[3::5]
 		power_consumption_list=list1[4::5]	
 
-                # Remove all print statements
-                 
-                # Put this code into a function. Pass in sub plot index
-                # label names. Nice to have. not must have
 
 		plt.subplot(3, 1, 1)
 		plt.plot(timer, gpu_list,label='GPU Usage')
@@ -154,9 +132,5 @@ class Benchmarking:
 
 			
 		plt.savefig('./model.png')
-
-# Have a better name. Choose decrptive variable names that convey the 
-# intent of the variable
 		
 analyzer = Benchmarking()
-
